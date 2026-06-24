@@ -473,8 +473,12 @@
       } catch (error) {
         // Navigation still works without session storage.
       }
-      const sandboxPath = window.location.pathname.indexOf("/test/") >= 0 ? "flpSandbox.html" : "test/flpSandbox.html";
-      window.location.href = `${sandboxPath}?sap-ui-xx-viewCache=false&openForecastApp=true#app-tile`;
+      const isGithubPages = window.location.hostname.endsWith("github.io");
+      const entryPath = isGithubPages
+        ? (window.location.pathname.indexOf("/test/") >= 0 ? "../index.html" : "index.html")
+        : (window.location.pathname.indexOf("/test/") >= 0 ? "flpSandbox.html" : "test/flpSandbox.html");
+      const shellHash = isGithubPages ? "" : "#app-tile";
+      window.location.href = `${entryPath}?sap-ui-xx-viewCache=false&openForecastApp=true${shellHash}`;
     },
 
     onFilterSearch: function () {
