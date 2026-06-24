@@ -1,0 +1,497 @@
+[
+  {
+    "periodo": "2026-05",
+    "mes": "Maio",
+    "equipeVendas": "110",
+    "segmento": "Distribuição / Indústria Geral",
+    "valorPrevisaoBRL": 434913.71,
+    "valorPrevisaoMM": 0.43491371,
+    "qtdItens": 178
+  },
+  {
+    "periodo": "2026-05",
+    "mes": "Maio",
+    "equipeVendas": "100",
+    "segmento": "Mineração / Grandes Contas",
+    "valorPrevisaoBRL": 105356,
+    "valorPrevisaoMM": 0.105356,
+    "qtdItens": 11
+  },
+  {
+    "periodo": "2026-05",
+    "mes": "Maio",
+    "equipeVendas": "106",
+    "segmento": "OEM / Projetos Industriais",
+    "valorPrevisaoBRL": 1631,
+    "valorPrevisaoMM": 0.001631,
+    "qtdItens": 6
+  },
+  {
+    "periodo": "2026-05",
+    "mes": "Maio",
+    "equipeVendas": "101",
+    "segmento": "Mineração / Fertilizantes",
+    "valorPrevisaoBRL": 95786.29,
+    "valorPrevisaoMM": 0.09578629,
+    "qtdItens": 17
+  },
+  {
+    "periodo": "2026-05",
+    "mes": "Maio",
+    "equipeVendas": "107",
+    "segmento": "Siderurgia",
+    "valorPrevisaoBRL": 53209.79,
+    "valorPrevisaoMM": 0.05320979,
+    "qtdItens": 16
+  },
+  {
+    "periodo": "2026-05",
+    "mes": "Maio",
+    "equipeVendas": "105",
+    "segmento": "Exportação América Latina",
+    "valorPrevisaoBRL": 31443.11,
+    "valorPrevisaoMM": 0.03144311,
+    "qtdItens": 15
+  },
+  {
+    "periodo": "2026-05",
+    "mes": "Maio",
+    "equipeVendas": "120",
+    "segmento": "Intercompany / Exterior",
+    "valorPrevisaoBRL": 50841,
+    "valorPrevisaoMM": 0.050841,
+    "qtdItens": 14
+  },
+  {
+    "periodo": "2026-08",
+    "mes": "Agosto",
+    "equipeVendas": "100",
+    "segmento": "Mineração / Grandes Contas",
+    "valorPrevisaoBRL": 389237.37,
+    "valorPrevisaoMM": 0.38923737,
+    "qtdItens": 3
+  },
+  {
+    "periodo": "2026-09",
+    "mes": "Setembro",
+    "equipeVendas": "100",
+    "segmento": "Mineração / Grandes Contas",
+    "valorPrevisaoBRL": 420688.38,
+    "valorPrevisaoMM": 0.42068838,
+    "qtdItens": 3
+  },
+  {
+    "periodo": "2026-10",
+    "mes": "Outubro",
+    "equipeVendas": "100",
+    "segmento": "Mineração / Grandes Contas",
+    "valorPrevisaoBRL": 451770.1,
+    "valorPrevisaoMM": 0.4517701,
+    "qtdItens": 6
+  },
+  {
+    "periodo": "2026-11",
+    "mes": "Novembro",
+    "equipeVendas": "100",
+    "segmento": "Mineração / Grandes Contas",
+    "valorPrevisaoBRL": 444677.61,
+    "valorPrevisaoMM": 0.44467761,
+    "qtdItens": 5
+  },
+  {
+    "periodo": "2026-12",
+    "mes": "Dezembro",
+    "equipeVendas": "100",
+    "segmento": "Mineração / Grandes Contas",
+    "valorPrevisaoBRL": 447057.74,
+    "valorPrevisaoMM": 0.44705774,
+    "qtdItens": 5
+  },
+  {
+    "periodo": "2026-06",
+    "mes": "Junho",
+    "equipeVendas": "100",
+    "segmento": "Mineração / Grandes Contas",
+    "valorPrevisaoBRL": 1169.63,
+    "valorPrevisaoMM": 0.00116963,
+    "qtdItens": 4
+  },
+  {
+    "periodo": "2026-10",
+    "mes": "Outubro",
+    "equipeVendas": "107",
+    "segmento": "Siderurgia",
+    "valorPrevisaoBRL": 166539.62,
+    "valorPrevisaoMM": 0.16653962,
+    "qtdItens": 10
+  },
+  {
+    "periodo": "2026-11",
+    "mes": "Novembro",
+    "equipeVendas": "107",
+    "segmento": "Siderurgia",
+    "valorPrevisaoBRL": 581561.2,
+    "valorPrevisaoMM": 0.5815612,
+    "qtdItens": 12
+  },
+  {
+    "periodo": "2026-12",
+    "mes": "Dezembro",
+    "equipeVendas": "107",
+    "segmento": "Siderurgia",
+    "valorPrevisaoBRL": 243122.22,
+    "valorPrevisaoMM": 0.24312222,
+    "qtdItens": 12
+  },
+  {
+    "periodo": "2026-07",
+    "mes": "Julho",
+    "equipeVendas": "107",
+    "segmento": "Siderurgia",
+    "valorPrevisaoBRL": 272157.45,
+    "valorPrevisaoMM": 0.27215745,
+    "qtdItens": 15
+  },
+  {
+    "periodo": "2026-06",
+    "mes": "Junho",
+    "equipeVendas": "107",
+    "segmento": "Siderurgia",
+    "valorPrevisaoBRL": 260801,
+    "valorPrevisaoMM": 0.260801,
+    "qtdItens": 12
+  },
+  {
+    "periodo": "2026-08",
+    "mes": "Agosto",
+    "equipeVendas": "107",
+    "segmento": "Siderurgia",
+    "valorPrevisaoBRL": 312802.9,
+    "valorPrevisaoMM": 0.3128029,
+    "qtdItens": 25
+  },
+  {
+    "periodo": "2026-09",
+    "mes": "Setembro",
+    "equipeVendas": "107",
+    "segmento": "Siderurgia",
+    "valorPrevisaoBRL": 372564.52,
+    "valorPrevisaoMM": 0.37256452,
+    "qtdItens": 23
+  },
+  {
+    "periodo": "2026-08",
+    "mes": "Agosto",
+    "equipeVendas": "106",
+    "segmento": "OEM / Projetos Industriais",
+    "valorPrevisaoBRL": 321285.8,
+    "valorPrevisaoMM": 0.3212858,
+    "qtdItens": 12
+  },
+  {
+    "periodo": "2026-09",
+    "mes": "Setembro",
+    "equipeVendas": "106",
+    "segmento": "OEM / Projetos Industriais",
+    "valorPrevisaoBRL": 125580.02,
+    "valorPrevisaoMM": 0.12558002,
+    "qtdItens": 17
+  },
+  {
+    "periodo": "2026-10",
+    "mes": "Outubro",
+    "equipeVendas": "106",
+    "segmento": "OEM / Projetos Industriais",
+    "valorPrevisaoBRL": 125968.07,
+    "valorPrevisaoMM": 0.12596807,
+    "qtdItens": 10
+  },
+  {
+    "periodo": "2026-07",
+    "mes": "Julho",
+    "equipeVendas": "106",
+    "segmento": "OEM / Projetos Industriais",
+    "valorPrevisaoBRL": 92986.08,
+    "valorPrevisaoMM": 0.09298608,
+    "qtdItens": 5
+  },
+  {
+    "periodo": "2026-11",
+    "mes": "Novembro",
+    "equipeVendas": "106",
+    "segmento": "OEM / Projetos Industriais",
+    "valorPrevisaoBRL": 765.89,
+    "valorPrevisaoMM": 0.00076589,
+    "qtdItens": 2
+  },
+  {
+    "periodo": "2026-10",
+    "mes": "Outubro",
+    "equipeVendas": "110",
+    "segmento": "Distribuição / Indústria Geral",
+    "valorPrevisaoBRL": 875444.54,
+    "valorPrevisaoMM": 0.87544454,
+    "qtdItens": 191
+  },
+  {
+    "periodo": "2026-06",
+    "mes": "Junho",
+    "equipeVendas": "110",
+    "segmento": "Distribuição / Indústria Geral",
+    "valorPrevisaoBRL": 268515.88,
+    "valorPrevisaoMM": 0.26851588,
+    "qtdItens": 130
+  },
+  {
+    "periodo": "2026-08",
+    "mes": "Agosto",
+    "equipeVendas": "110",
+    "segmento": "Distribuição / Indústria Geral",
+    "valorPrevisaoBRL": 812411.73,
+    "valorPrevisaoMM": 0.81241173,
+    "qtdItens": 152
+  },
+  {
+    "periodo": "2026-07",
+    "mes": "Julho",
+    "equipeVendas": "110",
+    "segmento": "Distribuição / Indústria Geral",
+    "valorPrevisaoBRL": 570091.53,
+    "valorPrevisaoMM": 0.57009153,
+    "qtdItens": 136
+  },
+  {
+    "periodo": "2026-09",
+    "mes": "Setembro",
+    "equipeVendas": "110",
+    "segmento": "Distribuição / Indústria Geral",
+    "valorPrevisaoBRL": 773291.63,
+    "valorPrevisaoMM": 0.77329163,
+    "qtdItens": 206
+  },
+  {
+    "periodo": "2026-11",
+    "mes": "Novembro",
+    "equipeVendas": "110",
+    "segmento": "Distribuição / Indústria Geral",
+    "valorPrevisaoBRL": 806449.27,
+    "valorPrevisaoMM": 0.80644927,
+    "qtdItens": 222
+  },
+  {
+    "periodo": "2026-12",
+    "mes": "Dezembro",
+    "equipeVendas": "110",
+    "segmento": "Distribuição / Indústria Geral",
+    "valorPrevisaoBRL": 765346.98,
+    "valorPrevisaoMM": 0.76534698,
+    "qtdItens": 148
+  },
+  {
+    "periodo": "2026-11",
+    "mes": "Novembro",
+    "equipeVendas": "130",
+    "segmento": "Outros",
+    "valorPrevisaoBRL": 6343.75,
+    "valorPrevisaoMM": 0.00634375,
+    "qtdItens": 4
+  },
+  {
+    "periodo": "2026-12",
+    "mes": "Dezembro",
+    "equipeVendas": "130",
+    "segmento": "Outros",
+    "valorPrevisaoBRL": 4000,
+    "valorPrevisaoMM": 0.004,
+    "qtdItens": 1
+  },
+  {
+    "periodo": "2026-06",
+    "mes": "Junho",
+    "equipeVendas": "101",
+    "segmento": "Mineração / Fertilizantes",
+    "valorPrevisaoBRL": 34951.74,
+    "valorPrevisaoMM": 0.03495174,
+    "qtdItens": 4
+  },
+  {
+    "periodo": "2026-08",
+    "mes": "Agosto",
+    "equipeVendas": "101",
+    "segmento": "Mineração / Fertilizantes",
+    "valorPrevisaoBRL": 535311.6,
+    "valorPrevisaoMM": 0.5353116,
+    "qtdItens": 34
+  },
+  {
+    "periodo": "2026-09",
+    "mes": "Setembro",
+    "equipeVendas": "101",
+    "segmento": "Mineração / Fertilizantes",
+    "valorPrevisaoBRL": 575572.95,
+    "valorPrevisaoMM": 0.57557295,
+    "qtdItens": 25
+  },
+  {
+    "periodo": "2026-07",
+    "mes": "Julho",
+    "equipeVendas": "101",
+    "segmento": "Mineração / Fertilizantes",
+    "valorPrevisaoBRL": 273397.87,
+    "valorPrevisaoMM": 0.27339787,
+    "qtdItens": 37
+  },
+  {
+    "periodo": "2026-11",
+    "mes": "Novembro",
+    "equipeVendas": "101",
+    "segmento": "Mineração / Fertilizantes",
+    "valorPrevisaoBRL": 531234.92,
+    "valorPrevisaoMM": 0.53123492,
+    "qtdItens": 24
+  },
+  {
+    "periodo": "2026-10",
+    "mes": "Outubro",
+    "equipeVendas": "101",
+    "segmento": "Mineração / Fertilizantes",
+    "valorPrevisaoBRL": 528152.21,
+    "valorPrevisaoMM": 0.52815221,
+    "qtdItens": 40
+  },
+  {
+    "periodo": "2026-12",
+    "mes": "Dezembro",
+    "equipeVendas": "101",
+    "segmento": "Mineração / Fertilizantes",
+    "valorPrevisaoBRL": 200840.16,
+    "valorPrevisaoMM": 0.20084016,
+    "qtdItens": 11
+  },
+  {
+    "periodo": "2026-06",
+    "mes": "Junho",
+    "equipeVendas": "120",
+    "segmento": "Intercompany / Exterior",
+    "valorPrevisaoBRL": 102420.78,
+    "valorPrevisaoMM": 0.10242078,
+    "qtdItens": 1
+  },
+  {
+    "periodo": "2026-07",
+    "mes": "Julho",
+    "equipeVendas": "120",
+    "segmento": "Intercompany / Exterior",
+    "valorPrevisaoBRL": 228011.53,
+    "valorPrevisaoMM": 0.22801153,
+    "qtdItens": 11
+  },
+  {
+    "periodo": "2026-08",
+    "mes": "Agosto",
+    "equipeVendas": "120",
+    "segmento": "Intercompany / Exterior",
+    "valorPrevisaoBRL": 204825.58,
+    "valorPrevisaoMM": 0.20482558,
+    "qtdItens": 14
+  },
+  {
+    "periodo": "2026-09",
+    "mes": "Setembro",
+    "equipeVendas": "120",
+    "segmento": "Intercompany / Exterior",
+    "valorPrevisaoBRL": 277712.76,
+    "valorPrevisaoMM": 0.27771276,
+    "qtdItens": 13
+  },
+  {
+    "periodo": "2026-10",
+    "mes": "Outubro",
+    "equipeVendas": "120",
+    "segmento": "Intercompany / Exterior",
+    "valorPrevisaoBRL": 275892.17,
+    "valorPrevisaoMM": 0.27589217,
+    "qtdItens": 9
+  },
+  {
+    "periodo": "2026-11",
+    "mes": "Novembro",
+    "equipeVendas": "120",
+    "segmento": "Intercompany / Exterior",
+    "valorPrevisaoBRL": 305743.13,
+    "valorPrevisaoMM": 0.30574313,
+    "qtdItens": 12
+  },
+  {
+    "periodo": "2026-12",
+    "mes": "Dezembro",
+    "equipeVendas": "120",
+    "segmento": "Intercompany / Exterior",
+    "valorPrevisaoBRL": 296013.93,
+    "valorPrevisaoMM": 0.29601393,
+    "qtdItens": 8
+  },
+  {
+    "periodo": "2026-06",
+    "mes": "Junho",
+    "equipeVendas": "105",
+    "segmento": "Exportação América Latina",
+    "valorPrevisaoBRL": 43983.1,
+    "valorPrevisaoMM": 0.0439831,
+    "qtdItens": 12
+  },
+  {
+    "periodo": "2026-07",
+    "mes": "Julho",
+    "equipeVendas": "105",
+    "segmento": "Exportação América Latina",
+    "valorPrevisaoBRL": 299840.59,
+    "valorPrevisaoMM": 0.29984059,
+    "qtdItens": 7
+  },
+  {
+    "periodo": "2026-08",
+    "mes": "Agosto",
+    "equipeVendas": "105",
+    "segmento": "Exportação América Latina",
+    "valorPrevisaoBRL": 151690.52,
+    "valorPrevisaoMM": 0.15169052,
+    "qtdItens": 5
+  },
+  {
+    "periodo": "2026-09",
+    "mes": "Setembro",
+    "equipeVendas": "105",
+    "segmento": "Exportação América Latina",
+    "valorPrevisaoBRL": 80758.34,
+    "valorPrevisaoMM": 0.08075834,
+    "qtdItens": 10
+  },
+  {
+    "periodo": "2026-10",
+    "mes": "Outubro",
+    "equipeVendas": "105",
+    "segmento": "Exportação América Latina",
+    "valorPrevisaoBRL": 74694.17,
+    "valorPrevisaoMM": 0.07469417,
+    "qtdItens": 11
+  },
+  {
+    "periodo": "2026-11",
+    "mes": "Novembro",
+    "equipeVendas": "105",
+    "segmento": "Exportação América Latina",
+    "valorPrevisaoBRL": 195117.69,
+    "valorPrevisaoMM": 0.19511769,
+    "qtdItens": 13
+  },
+  {
+    "periodo": "2026-12",
+    "mes": "Dezembro",
+    "equipeVendas": "105",
+    "segmento": "Exportação América Latina",
+    "valorPrevisaoBRL": 179991.76,
+    "valorPrevisaoMM": 0.17999176,
+    "qtdItens": 1
+  }
+]
