@@ -1,0 +1,31 @@
+{
+  "projeto": "Correias Mercúrio - App Fiori Montagem de Previsão",
+  "cenario": "Mockdata aderente ao processo S&OP Mercúrio",
+  "fonte": "mockData.json compatível gerado para a aplicação",
+  "dataGeracao": "2026-05-27",
+  "regraPrincipal": "Considerar somente meses de maio em diante; Carteira/Pedido somente em maio; junho em diante sem VBELN de carteira.",
+  "premissas": [
+    "Tipo Pedido foi tratado como Carteira.",
+    "Tipo Cotacao foi tratado como Pipeline/Cotações abertas.",
+    "Valores mensais do arquivo foram interpretados em milhões; valorBRL = valorMM * 1.000.000.",
+    "Previsão irrestrita foi calculada como Carteira de maio + Cotações ponderadas pela probabilidade.",
+    "Não foram criados dados fictícios de carteira após maio."
+  ],
+  "arquivos": {
+    "Carteira.json": "Itens de carteira apenas de maio/2026.",
+    "Cotacoes.json": "Cotações abertas de maio a dezembro/2026.",
+    "PrevisaoIrrestrita.json": "Previsão agregada para montagem no app.",
+    "ResumoMensal.json": "Totais mensais para cards/gráficos do Fiori.",
+    "ResumoEquipeVendas.json": "Totais por equipe de vendas/segmento.",
+    "SourceRowsNormalizado.json": "Base normalizada a partir do mockData.json compatível."
+  },
+  "totais": {
+    "sourceRows": 2916,
+    "carteiraItens": 225,
+    "cotacoesItens": 2691,
+    "previsaoItens": 1930,
+    "valorCarteiraMaioBRL": 412005,
+    "valorCotacoesMaioDezBRL": 32145719.18,
+    "valorPrevisaoMaioDezBRL": 16081968.94
+  }
+}

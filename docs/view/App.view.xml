@@ -1,0 +1,745 @@
+﻿<mvc:View
+  controllerName="zsd.forecast.unrestricted.controller.App"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:fb="sap.ui.comp.filterbar"
+  xmlns:core="sap.ui.core"
+  xmlns:smartTable="sap.ui.comp.smarttable"
+  xmlns:viz="sap.viz.ui5.controls"
+  xmlns:viz.data="sap.viz.ui5.data"
+  xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+  <VBox width="100%" height="100%">
+    <f:DynamicPage id="launchListReportPage" fitContent="false" headerExpanded="true" headerPinned="false" preserveHeaderStateOnScroll="false" toggleHeaderOnTitleClick="true" visible="{app>/showLaunchListReport}" class="forecastPage fullWidthPage">
+      <f:header>
+        <f:DynamicPageHeader pinnable="true" class="fullWidthHeader">
+            <fb:FilterBar
+              id="launchFilterBar"
+              persistencyKey="ZSD_FORECAST_LAUNCH_FILTERBAR"
+              header="{i18n>standardVariant}"
+              filterContainerWidth="13rem"
+              useToolbar="true"
+              showGoOnFB="true"
+              showClearOnFB="true"
+              search=".onLaunchListSearch"
+              clear=".onLaunchListClear">
+              <fb:filterGroupItems>
+                <fb:FilterGroupItem groupName="G1" name="Busca" label="{i18n>filterSearch}" visibleInFilterBar="true">
+                  <fb:control>
+                    <SearchField value="{app>/launchSearch}" width="13rem" placeholder="{i18n>filterSearchPlaceholder}" liveChange=".onLaunchSearchChange"/>
+                  </fb:control>
+                </fb:FilterGroupItem>
+                <fb:FilterGroupItem groupName="G1" name="Data" label="{i18n>filterDate}" visibleInFilterBar="true">
+                  <fb:control>
+                    <DatePicker value="{app>/launchSelectedDate}" valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="{i18n>filterDatePlaceholder}" width="9rem" change=".onLaunchDateChange"/>
+                  </fb:control>
+                </fb:FilterGroupItem>
+                <fb:FilterGroupItem groupName="G1" name="UnFabril" label="{i18n>filterPlant}" visibleInFilterBar="true">
+                  <fb:control>
+                    <MultiComboBox width="13rem" selectedKeys="{app>/launchSelectedCenters}" selectionChange=".onMultiSelectAllChange">
+                      <core:Item key="ALL" text="Selecionar tudo"/>
+                      <core:Item key="1000" text="{i18n>plant1000}"/>
+                      <core:Item key="1040" text="{i18n>plant1040}"/>
+                      <core:Item key="1030" text="{i18n>plant1030}"/>
+                    </MultiComboBox>
+                  </fb:control>
+                </fb:FilterGroupItem>
+                <fb:FilterGroupItem groupName="G1" name="Eqvs" label="{i18n>filterSalesTeam}" visibleInFilterBar="true">
+                  <fb:control>
+                    <MultiComboBox width="15rem" selectedKeys="{app>/launchSelectedTeams}" selectionChange=".onMultiSelectAllChange">
+                      <core:Item key="ALL" text="Selecionar tudo"/>
+                      <core:Item key="100" text="{i18n>team100}"/>
+                      <core:Item key="101" text="{i18n>team101}"/>
+                      <core:Item key="105" text="{i18n>team105}"/>
+                      <core:Item key="106" text="{i18n>team106}"/>
+                      <core:Item key="107" text="{i18n>team107}"/>
+                      <core:Item key="110" text="{i18n>team110}"/>
+                      <core:Item key="120" text="{i18n>team120}"/>
+                      <core:Item key="130" text="{i18n>team130}"/>
+                    </MultiComboBox>
+                  </fb:control>
+                </fb:FilterGroupItem>
+              </fb:filterGroupItems>
+            </fb:FilterBar>
+        </f:DynamicPageHeader>
+      </f:header>
+      <f:content>
+        <VBox width="100%" class="contentWrap pageScroll">
+          <OverflowToolbar>
+            <Title text="{app>/launchResultTitle}" level="H3"/>
+            <ToolbarSpacer/>
+            <Button text="{i18n>assembleForecast}" icon="sap-icon://settings" type="Emphasized" press=".onOpenForecastApp"/>
+          </OverflowToolbar>
+          <smartTable:SmartTable
+            id="launchListSmartTable"
+            tableType="ResponsiveTable"
+            enableAutoBinding="false"
+            useVariantManagement="false"
+            useTablePersonalisation="true"
+            showRowCount="false"
+            width="100%">
+            <Table
+              id="launchListTable"
+              sticky="ColumnHeaders"
+              fixedLayout="false"
+              width="100%"
+              noDataText=""
+              items="{app>/launchListRows}"
+              class="forecastTable zebraTable">
+              <columns>
+                <Column width="12rem"><Text text="{i18n>type}"/></Column>
+                <Column width="8rem"><Text text="{i18n>number}"/></Column>
+                <Column width="14rem"><Text text="{i18n>client}"/></Column>
+                <Column width="9rem"><Text text="{i18n>plant}"/></Column>
+                <Column width="11rem"><Text text="{i18n>salesTeam}"/></Column>
+                <Column width="7rem"><Text text="{i18n>month}"/></Column>
+                <Column width="6rem"><Text text="{i18n>year}"/></Column>
+                <Column hAlign="End" width="8rem"><Text text="{i18n>total}"/></Column>
+              </columns>
+              <items>
+                <ColumnListItem>
+                  <cells>
+                    <Text text="{app>tipoLaunch}"/>
+                    <Text text="{app>documentDisplay}"/>
+                    <Text text="{app>cliente}"/>
+                    <Text text="{app>centroText}"/>
+                    <Text text="{app>eqvsText}"/>
+                    <Text text="{app>launchMonth}"/>
+                    <Text text="{app>launchYear}"/>
+                    <ObjectNumber number="{app>launchTotalDisplay}" unit="{app>launchTotalUnit}"/>
+                  </cells>
+                </ColumnListItem>
+              </items>
+            </Table>
+          </smartTable:SmartTable>
+        </VBox>
+      </f:content>
+    </f:DynamicPage>
+
+  <f:DynamicPage id="page" fitContent="false" headerExpanded="true" headerPinned="false" preserveHeaderStateOnScroll="false" toggleHeaderOnTitleClick="true" visible="{= !${app>/showLaunchListReport} }" class="forecastPage fullWidthPage">
+    <f:header>
+      <f:DynamicPageHeader pinnable="true" class="fullWidthHeader">
+          <fb:FilterBar
+            id="forecastFilterBar"
+            persistencyKey="ZSD_FORECAST_UNRESTRICTED_FILTERBAR"
+            header="{i18n>standardVariant}"
+            filterContainerWidth="13rem"
+            useToolbar="true"
+            showGoOnFB="true"
+            showClearOnFB="true"
+            search=".onFilterSearch"
+            clear=".onFilterClear">
+            <fb:filterGroupItems>
+              <fb:FilterGroupItem groupName="G1" name="Busca" label="{i18n>filterSearch}" visibleInFilterBar="true">
+                <fb:control>
+                  <SearchField width="13rem" placeholder="{i18n>filterSearchPlaceholder}" liveChange=".onSearch"/>
+                </fb:control>
+              </fb:FilterGroupItem>
+              <fb:FilterGroupItem groupName="G1" name="IDCliente" label="{i18n>customerId}" visibleInFilterBar="true">
+                <fb:control>
+                  <Input
+                    value="{app>/globalCustomerId}"
+                    valueLiveUpdate="true"
+                    width="13rem"
+                    showSuggestion="true"
+                    showValueHelp="true"
+                    placeholder="{i18n>customerIdPlaceholder}"
+                    liveChange=".onFilterSearch"
+                    suggestionItemSelected=".onFilterSearch"
+                    valueHelpRequest=".onCustomerIdValueHelp"
+                    suggestionItems="{app>/valueHelps/customerIds}">
+                    <suggestionItems>
+                      <core:Item key="{app>key}" text="{app>text}"/>
+                    </suggestionItems>
+                  </Input>
+                </fb:control>
+              </fb:FilterGroupItem>
+              <fb:FilterGroupItem groupName="G1" name="CotacaoRange" label="{i18n>quoteRange}" visibleInFilterBar="true">
+                <fb:control>
+                  <Input
+                    value="{app>/globalQuoteFrom}"
+                    valueLiveUpdate="true"
+                    width="13rem"
+                    showSuggestion="true"
+                    showValueHelp="true"
+                    placeholder="{i18n>from}"
+                    liveChange=".onFilterSearch"
+                    suggestionItemSelected=".onFilterSearch"
+                    valueHelpRequest=".onQuoteFromValueHelp"
+                    suggestionItems="{app>/valueHelps/quoteIds}">
+                    <suggestionItems>
+                      <core:Item key="{app>key}" text="{app>text}"/>
+                    </suggestionItems>
+                  </Input>
+                </fb:control>
+              </fb:FilterGroupItem>
+              <fb:FilterGroupItem groupName="G1" name="CarteiraRange" label="{i18n>portfolioRange}" visibleInFilterBar="true">
+                <fb:control>
+                  <Input
+                    value="{app>/globalPortfolioFrom}"
+                    valueLiveUpdate="true"
+                    width="13rem"
+                    showSuggestion="true"
+                    showValueHelp="true"
+                    placeholder="{i18n>from}"
+                    liveChange=".onFilterSearch"
+                    suggestionItemSelected=".onFilterSearch"
+                    valueHelpRequest=".onPortfolioFromValueHelp"
+                    suggestionItems="{app>/valueHelps/portfolioDocuments}">
+                    <suggestionItems>
+                      <core:Item key="{app>key}" text="{app>text}"/>
+                    </suggestionItems>
+                  </Input>
+                </fb:control>
+              </fb:FilterGroupItem>
+              <fb:FilterGroupItem groupName="G1" name="Data" label="{i18n>filterDate}" visibleInFilterBar="true">
+                <fb:control>
+                  <DateRangeSelection value="{app>/selectedDateRange}" displayFormat="dd/MM/yyyy" delimiter=" - " placeholder="{i18n>filterDateRangePlaceholder}" width="18rem" change=".onFilterDateChange"/>
+                </fb:control>
+              </fb:FilterGroupItem>
+              <fb:FilterGroupItem groupName="G1" name="Un Fabril" label="{i18n>filterPlant}" visibleInFilterBar="true">
+                <fb:control>
+                  <MultiComboBox width="13rem" selectedKeys="{app>/selectedCenters}" selectionFinish=".onRecalculate" selectionChange=".onMultiSelectAllChange">
+                    <core:Item key="ALL" text="Selecionar tudo"/>
+                    <core:Item key="1000" text="{i18n>plant1000}"/>
+                    <core:Item key="1040" text="{i18n>plant1040}"/>
+                    <core:Item key="1030" text="{i18n>plant1030}"/>
+                  </MultiComboBox>
+                </fb:control>
+              </fb:FilterGroupItem>
+              <fb:FilterGroupItem groupName="G1" name="Eqvs" label="{i18n>filterSalesTeam}" visibleInFilterBar="true">
+                <fb:control>
+                  <MultiComboBox width="15rem" selectedKeys="{app>/selectedTeams}" selectionFinish=".onRecalculate" selectionChange=".onMultiSelectAllChange">
+                    <core:Item key="ALL" text="Selecionar tudo"/>
+                    <core:Item key="100" text="{i18n>team100}"/>
+                    <core:Item key="101" text="{i18n>team101}"/>
+                    <core:Item key="105" text="{i18n>team105}"/>
+                    <core:Item key="106" text="{i18n>team106}"/>
+                    <core:Item key="107" text="{i18n>team107}"/>
+                    <core:Item key="110" text="{i18n>team110}"/>
+                    <core:Item key="120" text="{i18n>team120}"/>
+                    <core:Item key="130" text="{i18n>team130}"/>
+                  </MultiComboBox>
+                </fb:control>
+              </fb:FilterGroupItem>
+            </fb:filterGroupItems>
+          </fb:FilterBar>
+      </f:DynamicPageHeader>
+    </f:header>
+
+    <f:content>
+      <VBox width="100%" class="contentWrap pageScroll">
+        <HBox class="kpiStrip" wrap="Wrap" renderType="Bare" width="100%">
+          <VBox class="kpiBox">
+            <Text text="{i18n>portfolio}"/>
+            <ObjectNumber number="{app>/kpis/carteira}" unit="{app>/kpis/carteiraUnit}" state="Success"/>
+          </VBox>
+          <VBox class="kpiBox">
+            <HBox width="100%" alignItems="Center" justifyContent="SpaceBetween">
+              <Text text="{i18n>quotes}"/>
+              <HBox alignItems="Center" class="kpiSwitchWrap">
+                <Label text="Ponderar" class="kpiSwitchLabel"/>
+                <Switch state="{app>/weightedQuotes}" customTextOn="SIM" customTextOff="NÃO" tooltip="Ponderar cotações" change=".onToggleWeightedQuotes"/>
+              </HBox>
+            </HBox>
+            <HBox class="kpiValuePair" alignItems="End" justifyContent="SpaceBetween">
+              <VBox>
+                <ObjectNumber number="{app>/kpis/cotacoes}" unit="{app>/kpis/cotacoesUnit}" state="Success"/>
+              </VBox>
+              <VBox class="kpiGrossWeightBox">
+                <Text text="{i18n>grossWeight}" class="kpiGrossWeightLabel"/>
+                <ObjectNumber number="{app>/kpis/cotacoesPesoBruto}" unit="{app>/kpis/cotacoesPesoBrutoUnit}" state="Success"/>
+              </VBox>
+            </HBox>
+          </VBox>
+          <VBox class="kpiBox">
+            <HBox width="100%" alignItems="Center" justifyContent="SpaceBetween">
+              <Text text="{i18n>forecast}"/>
+              <HBox alignItems="Center" class="kpiSwitchWrap">
+                <Label text="Ponderar" class="kpiSwitchLabel"/>
+                <Switch state="{app>/weightedForecast}" customTextOn="SIM" customTextOff="NÃO" tooltip="Ponderar previsão irrestrita" change=".onToggleWeightedForecast"/>
+              </HBox>
+            </HBox>
+            <HBox class="kpiValuePair" alignItems="End" justifyContent="SpaceBetween">
+              <VBox>
+                <ObjectNumber number="{app>/kpis/previsao}" unit="{app>/kpis/previsaoUnit}" state="Information"/>
+              </VBox>
+              <VBox class="kpiGrossWeightBox">
+                <Text text="{i18n>grossWeight}" class="kpiGrossWeightLabel"/>
+                <ObjectNumber number="{app>/kpis/previsaoPesoBruto}" unit="{app>/kpis/previsaoPesoBrutoUnit}" state="Information"/>
+              </VBox>
+            </HBox>
+          </VBox>
+          <VBox class="kpiBox">
+            <Text text="{i18n>budget2026}"/>
+            <ObjectNumber number="{app>/kpis/budget}" unit="{app>/kpis/budgetUnit}" state="Information"/>
+          </VBox>
+        </HBox>
+
+        <Panel width="100%" class="chartPanel">
+          <headerToolbar>
+            <OverflowToolbar>
+              <Title text="{i18n>selectedAmountByMonth}" level="H3"/>
+            </OverflowToolbar>
+          </headerToolbar>
+          <HBox width="100%" alignItems="Stretch" class="chartScrollLayout">
+            <ScrollContainer width="100%" height="23rem" horizontal="true" vertical="false" focusable="true" class="chartHorizontalScroll">
+              <layoutData>
+                <FlexItemData growFactor="1" shrinkFactor="1"/>
+              </layoutData>
+              <viz:VizFrame id="forecastChart" height="22rem" width="133.333%" vizType="stacked_column" class="forecastChartText" selectData=".onForecastChartSelectData">
+                <viz:dataset>
+                  <viz.data:FlattenedDataset data="{app>/chart}">
+                    <viz.data:dimensions>
+                      <viz.data:DimensionDefinition name="Mes" value="{app>month}"/>
+                      <viz.data:DimensionDefinition name="Comparativo" value="{app>group}"/>
+                    </viz.data:dimensions>
+                    <viz.data:measures>
+                      <viz.data:MeasureDefinition name="Carteira" value="{app>carteira}"/>
+                      <viz.data:MeasureDefinition name="Cotações" value="{app>cotacoes}"/>
+                      <viz.data:MeasureDefinition name="Faturado" value="{app>faturado}"/>
+                      <viz.data:MeasureDefinition name="Budget" value="{app>budget}"/>
+                      <viz.data:MeasureDefinition name="Previsão" value="{app>previsao}"/>
+                    </viz.data:measures>
+                  </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                  <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Carteira,Cotações,Faturado,Budget,Previsão"/>
+                  <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Mes,Comparativo"/>
+                </viz:feeds>
+              </viz:VizFrame>
+            </ScrollContainer>
+            <VBox width="10rem" class="chartFixedLegend">
+              <HBox alignItems="Center" class="chartLegendItem">
+                <Text text=" " class="chartLegendSwatch chartLegendCarteira"/>
+                <Text text="{i18n>portfolio}"/>
+              </HBox>
+              <HBox alignItems="Center" class="chartLegendItem">
+                <Text text=" " class="chartLegendSwatch chartLegendCotacoes"/>
+                <Text text="{i18n>quotes}"/>
+              </HBox>
+              <HBox alignItems="Center" class="chartLegendItem">
+                <Text text=" " class="chartLegendSwatch chartLegendFaturado"/>
+                <Text text="{i18n>chartGroupBilledCurrentYear}"/>
+              </HBox>
+              <HBox alignItems="Center" class="chartLegendItem">
+                <Text text=" " class="chartLegendSwatch chartLegendBudget"/>
+                <Text text="{i18n>budget}"/>
+              </HBox>
+              <HBox alignItems="Center" class="chartLegendItem">
+                <Text text=" " class="chartLegendSwatch chartLegendPrevisao"/>
+                <Text text="{i18n>chartGroupForecast}"/>
+              </HBox>
+            </VBox>
+          </HBox>
+        </Panel>
+
+        <IconTabBar id="workTabs" expandable="false" class="workspaceTabs" width="100%">
+          <items>
+<IconTabFilter text="{i18n>monthDetail}" key="detalhamento">
+              <smartTable:SmartTable id="monthDetailSmartTable" tableType="ResponsiveTable" enableAutoBinding="false" useVariantManagement="false" useTablePersonalisation="true" showRowCount="false" width="100%">
+                <Table id="monthDetailTable" sticky="ColumnHeaders" fixedLayout="false" width="100%" items="{app>/detailRows}" class="monthDetailTable zebraTable">
+                  <columns>
+                    <Column width="18rem"><Text text="{i18n>component}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>jan}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>feb}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>mar}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>apr}"/></Column>
+                    <Column hAlign="End" width="8rem">
+                      <HBox width="7rem" justifyContent="Center" class="sapUiTinyMarginBeginEnd">
+                        <ObjectStatus text="{i18n>may}" state="Information" inverted="true"/>
+                      </HBox>
+                    </Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>jun}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>jul}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>aug}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>sep}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>oct}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>nov}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>dec}"/></Column>
+                  </columns>
+                  <items>
+                    <ColumnListItem>
+                      <cells>
+                        <Text text="{app>component}"/>
+                        <ObjectNumber number="{app>janDisplay}" unit="{app>janUnit}" state="{app>janState}"/>
+                        <ObjectNumber number="{app>fevDisplay}" unit="{app>fevUnit}" state="{app>fevState}"/>
+                        <ObjectNumber number="{app>marDisplay}" unit="{app>marUnit}" state="{app>marState}"/>
+                        <ObjectNumber number="{app>abrDisplay}" unit="{app>abrUnit}" state="{app>abrState}"/>
+                        <HBox width="7rem" justifyContent="End" class="sapUiTinyMarginBeginEnd">
+                          <ObjectStatus text="{app>maiText}" state="Information" inverted="true"/>
+                        </HBox>
+                        <ObjectNumber number="{app>junDisplay}" unit="{app>junUnit}" state="{app>junState}"/>
+                        <ObjectNumber number="{app>julDisplay}" unit="{app>julUnit}" state="{app>julState}"/>
+                        <ObjectNumber number="{app>agoDisplay}" unit="{app>agoUnit}" state="{app>agoState}"/>
+                        <ObjectNumber number="{app>setDisplay}" unit="{app>setUnit}" state="{app>setState}"/>
+                        <ObjectNumber number="{app>outDisplay}" unit="{app>outUnit}" state="{app>outState}"/>
+                        <ObjectNumber number="{app>novDisplay}" unit="{app>novUnit}" state="{app>novState}"/>
+                        <ObjectNumber number="{app>dezDisplay}" unit="{app>dezUnit}" state="{app>dezState}"/>
+                      </cells>
+                    </ColumnListItem>
+                  </items>
+                </Table>
+              </smartTable:SmartTable>
+              <OverflowToolbar class="sapUiSmallMarginTop">
+                <Title text="{i18n>revenueSummaryTitle}" level="H3"/>
+                <ToolbarSpacer/>
+              </OverflowToolbar>
+              <Table
+                id="revenueSummaryTable"
+                sticky="ColumnHeaders"
+                fixedLayout="false"
+                width="100%"
+                items="{app>/revenueSummaryRows}"
+                class="monthDetailTable revenueSummaryTable zebraTable">
+                <columns>
+                  <Column width="14rem"><Text text="{i18n>salesTeam}"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Jan"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Fev"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Mar"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Abr"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Mai"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Jun"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Jul"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Ago"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Set"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Out"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Nov"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Dez"/></Column>
+                  <Column hAlign="End" width="7rem"><Text text="Total"/></Column>
+                </columns>
+                <items>
+                  <ColumnListItem class="{app>rowClass}">
+                    <cells>
+                      <Text text="{app>component}" wrapping="false"/>
+                      <ObjectNumber number="{app>janDisplay}" unit="{app>janUnit}"/>
+                      <ObjectNumber number="{app>fevDisplay}" unit="{app>fevUnit}"/>
+                      <ObjectNumber number="{app>marDisplay}" unit="{app>marUnit}"/>
+                      <ObjectNumber number="{app>abrDisplay}" unit="{app>abrUnit}"/>
+                      <ObjectNumber number="{app>maiDisplay}" unit="{app>maiUnit}"/>
+                      <ObjectNumber number="{app>junDisplay}" unit="{app>junUnit}"/>
+                      <ObjectNumber number="{app>julDisplay}" unit="{app>julUnit}"/>
+                      <ObjectNumber number="{app>agoDisplay}" unit="{app>agoUnit}"/>
+                      <ObjectNumber number="{app>setDisplay}" unit="{app>setUnit}"/>
+                      <ObjectNumber number="{app>outDisplay}" unit="{app>outUnit}"/>
+                      <ObjectNumber number="{app>novDisplay}" unit="{app>novUnit}"/>
+                      <ObjectNumber number="{app>dezDisplay}" unit="{app>dezUnit}"/>
+                      <ObjectNumber number="{app>totalDisplay}" unit="{app>totalUnit}"/>
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+            </IconTabFilter>
+
+<IconTabFilter text="{app>/billedCurrentYearShortTitle}" key="faturado">
+              <smartTable:SmartTable id="billedSmartTable" tableType="ResponsiveTable" enableAutoBinding="false" useVariantManagement="false" useTablePersonalisation="true" showRowCount="false" width="100%">
+                <Table id="billedTable" mode="None" sticky="ColumnHeaders" fixedLayout="false" width="100%" items="{app>/billedRows}" class="monthDetailTable zebraTable">
+                  <columns>
+                    <Column width="18rem"><Text text="{i18n>component}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>jan}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>feb}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>mar}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>apr}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>may}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>jun}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>jul}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>aug}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>sep}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>oct}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>nov}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>dec}"/></Column>
+                  </columns>
+                  <items>
+                    <ColumnListItem>
+                      <cells>
+                        <Text text="{app>component}"/>
+                        <ObjectNumber number="{app>janDisplay}" unit="{app>janUnit}"/>
+                        <ObjectNumber number="{app>fevDisplay}" unit="{app>fevUnit}"/>
+                        <ObjectNumber number="{app>marDisplay}" unit="{app>marUnit}"/>
+                        <ObjectNumber number="{app>abrDisplay}" unit="{app>abrUnit}"/>
+                        <ObjectNumber number="{app>maiDisplay}" unit="{app>maiUnit}"/>
+                        <ObjectNumber number="{app>junDisplay}" unit="{app>junUnit}"/>
+                        <ObjectNumber number="{app>julDisplay}" unit="{app>julUnit}"/>
+                        <ObjectNumber number="{app>agoDisplay}" unit="{app>agoUnit}"/>
+                        <ObjectNumber number="{app>setDisplay}" unit="{app>setUnit}"/>
+                        <ObjectNumber number="{app>outDisplay}" unit="{app>outUnit}"/>
+                        <ObjectNumber number="{app>novDisplay}" unit="{app>novUnit}"/>
+                        <ObjectNumber number="{app>dezDisplay}" unit="{app>dezUnit}"/>
+                      </cells>
+                    </ColumnListItem>
+                  </items>
+                </Table>
+              </smartTable:SmartTable>
+            </IconTabFilter>
+
+<IconTabFilter text="{i18n>portfolio}" key="carteira">
+              <OverflowToolbar>
+                <ObjectStatus text="{app>/portfolioStatus}" state="Information"/>
+                <ToolbarSpacer/>
+                <Button text="{i18n>addPortfolioToForecast}" icon="sap-icon://add" type="Emphasized" press=".onAddPortfolioSelection"/>
+              </OverflowToolbar>
+              <ScrollContainer height="30rem" width="100%" vertical="true" horizontal="true" focusable="true" class="tabTableScroll">
+                <smartTable:SmartTable id="portfolioSmartTable" tableType="ResponsiveTable" enableAutoBinding="false" useVariantManagement="false" useTablePersonalisation="true" showRowCount="true" width="100%">
+                  <Table
+                    id="portfolioTable"
+                    mode="MultiSelect"
+                    selectionChange=".onSourceSelectionChange"
+                    sticky="ColumnHeaders"
+                    fixedLayout="false"
+                    width="100%"
+                    items="{app>/carteiraRows}"
+                    class="forecastTable zebraTable">
+                    <columns>
+                      <Column width="7rem"><Text text="{i18n>number}"/></Column>
+                      <Column width="9rem"><Text text="{i18n>plant}"/></Column>
+                      <Column width="11rem"><Text text="{i18n>salesTeam}"/></Column>
+                      <Column width="12rem"><Text text="{i18n>client}"/></Column>
+                      <Column width="10rem"><Text text="{i18n>product}"/></Column>
+                      <Column width="13rem"><Text text="{i18n>description}"/></Column>
+                      <Column width="10rem"><Text text="{i18n>technicalStatus}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>jan}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>feb}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>mar}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>apr}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>may}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>jun}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>jul}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>aug}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>sep}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>oct}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>nov}"/></Column>
+                      <Column hAlign="End" width="5.5rem"><Text text="{i18n>dec}"/></Column>
+                      <Column hAlign="End" width="7rem"><Text text="{i18n>total}"/></Column>
+                    </columns>
+                    <items>
+                      <ColumnListItem>
+                        <cells>
+                          <Text text="{app>documentDisplay}"/>
+                          <Text text="{app>centroText}"/>
+                          <Text text="{app>eqvsText}"/>
+                          <Text text="{app>cliente}"/>
+                          <Text text="{app>mat}"/>
+                          <Text text="{app>desc}"/>
+                          <ObjectStatus text="{app>technicalStatusText}" state="{app>technicalStatusState}" icon="{app>technicalStatusIcon}"/>
+                          <ObjectNumber number="{app>janDisplay}" unit="{app>janUnit}"/>
+                          <ObjectNumber number="{app>fevDisplay}" unit="{app>fevUnit}"/>
+                          <ObjectNumber number="{app>marDisplay}" unit="{app>marUnit}"/>
+                          <ObjectNumber number="{app>abrDisplay}" unit="{app>abrUnit}"/>
+                          <ObjectNumber number="{app>maiDisplay}" unit="{app>maiUnit}"/>
+                          <ObjectNumber number="{app>junDisplay}" unit="{app>junUnit}"/>
+                          <ObjectNumber number="{app>julDisplay}" unit="{app>julUnit}"/>
+                          <ObjectNumber number="{app>agoDisplay}" unit="{app>agoUnit}"/>
+                          <ObjectNumber number="{app>setDisplay}" unit="{app>setUnit}"/>
+                          <ObjectNumber number="{app>outDisplay}" unit="{app>outUnit}"/>
+                          <ObjectNumber number="{app>novDisplay}" unit="{app>novUnit}"/>
+                          <ObjectNumber number="{app>dezDisplay}" unit="{app>dezUnit}"/>
+                          <ObjectNumber number="{app>totalDisplay}" unit="{app>totalUnit}"/>
+                        </cells>
+                      </ColumnListItem>
+                    </items>
+                  </Table>
+                </smartTable:SmartTable>
+              </ScrollContainer>
+            </IconTabFilter>
+
+<IconTabFilter text="{i18n>quote}" key="cotações">
+              <OverflowToolbar>
+                <ObjectStatus text="{app>/quoteStatus}" state="Information"/>
+                <ToolbarSpacer/>
+                <Button text="{i18n>addQuotesToForecast}" icon="sap-icon://add" type="Emphasized" press=".onAddQuoteSelection"/>
+              </OverflowToolbar>
+              <ScrollContainer height="30rem" width="100%" vertical="true" horizontal="true" focusable="true" class="tabTableScroll">
+                <smartTable:SmartTable id="quoteSmartTable" tableType="ResponsiveTable" enableAutoBinding="false" useVariantManagement="false" useTablePersonalisation="true" showRowCount="true" width="100%">
+                  <Table
+                    id="quoteTable"
+                    mode="MultiSelect"
+                    selectionChange=".onSourceSelectionChange"
+                    sticky="ColumnHeaders"
+                    fixedLayout="false"
+                    width="100%"
+                    items="{app>/cotacaoRows}"
+                    class="forecastTable zebraTable">
+                  <columns>
+                    <Column width="7rem"><Text text="{i18n>number}"/></Column>
+                    <Column width="9rem"><Text text="{i18n>plant}"/></Column>
+                    <Column width="11rem"><Text text="{i18n>salesTeam}"/></Column>
+                    <Column width="12rem"><Text text="{i18n>client}"/></Column>
+                    <Column width="10rem"><Text text="{i18n>product}"/></Column>
+                    <Column width="13rem"><Text text="{i18n>description}"/></Column>
+                    <Column width="10rem"><Text text="{i18n>technicalStatus}"/></Column>
+                    <Column hAlign="End" width="5rem"><Text text="{i18n>probability}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>jan}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>feb}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>mar}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>apr}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>may}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>jun}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>jul}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>aug}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>sep}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>oct}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>nov}"/></Column>
+                    <Column hAlign="End" width="5.5rem"><Text text="{i18n>dec}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>weightedTotal}"/></Column>
+                  </columns>
+                  <items>
+                    <ColumnListItem>
+                      <cells>
+                        <Text text="{app>documentDisplay}"/>
+                        <Text text="{app>centroText}"/>
+                        <Text text="{app>eqvsText}"/>
+                        <Text text="{app>cliente}"/>
+                        <Text text="{app>mat}"/>
+                        <Text text="{app>desc}"/>
+                        <ObjectStatus text="{app>technicalStatusText}" state="{app>technicalStatusState}" icon="{app>technicalStatusIcon}"/>
+                        <ObjectNumber number="{app>prob}" unit="%"/>
+                        <ObjectNumber number="{app>janDisplay}" unit="{app>janUnit}"/>
+                        <ObjectNumber number="{app>fevDisplay}" unit="{app>fevUnit}"/>
+                        <ObjectNumber number="{app>marDisplay}" unit="{app>marUnit}"/>
+                        <ObjectNumber number="{app>abrDisplay}" unit="{app>abrUnit}"/>
+                        <ObjectNumber number="{app>maiDisplay}" unit="{app>maiUnit}"/>
+                        <ObjectNumber number="{app>junDisplay}" unit="{app>junUnit}"/>
+                        <ObjectNumber number="{app>julDisplay}" unit="{app>julUnit}"/>
+                        <ObjectNumber number="{app>agoDisplay}" unit="{app>agoUnit}"/>
+                        <ObjectNumber number="{app>setDisplay}" unit="{app>setUnit}"/>
+                        <ObjectNumber number="{app>outDisplay}" unit="{app>outUnit}"/>
+                        <ObjectNumber number="{app>novDisplay}" unit="{app>novUnit}"/>
+                        <ObjectNumber number="{app>dezDisplay}" unit="{app>dezUnit}"/>
+                        <ObjectNumber number="{app>totalWeightedDisplay}" unit="{app>totalWeightedUnit}"/>
+                      </cells>
+                    </ColumnListItem>
+                  </items>
+                  </Table>
+                </smartTable:SmartTable>
+              </ScrollContainer>
+            </IconTabFilter>
+
+<IconTabFilter text="{i18n>salesPlanForecast}" key="previsao">
+              <customData>
+                <BadgeCustomData value="{app>/forecastBadgeCount}" visible="{app>/forecastBadgeVisible}"/>
+              </customData>
+              <OverflowToolbar>
+                <ObjectStatus text="{app>/forecastStatus}" state="Information"/>
+                <ToolbarSpacer/>
+                <Button text="{i18n>saveForecast}" icon="sap-icon://save" type="Accept" press=".onSaveForecast"/>
+                <Button text="{i18n>deleteForecastItems}" icon="sap-icon://delete" type="Reject" press=".onRemoveForecastSelection"/>
+                <Button text="{i18n>addManualItem}" icon="sap-icon://add-document" type="Emphasized" press=".onAddManualForecast"/>
+              </OverflowToolbar>
+              <smartTable:SmartTable id="forecastSmartTable" tableType="ResponsiveTable" enableAutoBinding="false" useVariantManagement="false" useTablePersonalisation="true" showRowCount="true" width="100%">
+                <Table
+                  id="forecastTable"
+                  mode="MultiSelect"
+                  sticky="ColumnHeaders"
+                  fixedLayout="false"
+                  width="100%"
+                  items="{app>/forecastRows}"
+                  class="forecastEditTable zebraTable">
+                  <columns>
+                    <Column width="7rem"><Text text="{i18n>type}"/></Column>
+                    <Column width="8rem"><Text text="{i18n>number}"/></Column>
+                    <Column width="12rem"><Text text="{i18n>client}"/></Column>
+                    <Column width="12rem"><Text text="{i18n>product}"/></Column>
+                    <Column width="7rem"><Text text="{i18n>mtsMto}"/></Column>
+                    <Column width="9rem"><Text text="{i18n>situation}"/></Column>
+                    <Column width="10rem"><Text text="{i18n>technicalStatus}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>qty}"/></Column>
+                    <Column hAlign="End" width="8rem"><Text text="{i18n>unitValue}"/></Column>
+                    <Column hAlign="End" width="8rem"><Text text="{i18n>totalValue}"/></Column>
+                    <Column hAlign="End" width="7rem"><Text text="{i18n>freight}"/></Column>
+                    <Column hAlign="End" width="6rem"><Text text="{i18n>probability}"/></Column>
+                    <Column hAlign="End" width="8rem"><Text text="{i18n>weightedValue}"/></Column>
+                    <Column width="9rem"><Text text="{i18n>date}"/></Column>
+                    <Column width="6rem"><Text text="{i18n>month}"/></Column>
+                    <Column width="8rem"><Text text="{i18n>status}"/></Column>
+                  </columns>
+                  <items>
+                    <ColumnListItem highlight="{app>highlight}">
+                      <cells>
+                        <ObjectStatus text="{app>tipo}" state="{app>tipoState}"/>
+                        <Text text="{app>numero}"/>
+                        <Input value="{app>cliente}" editable="{app>editable}" width="11rem" showSuggestion="true" suggestionItems="{app>/valueHelps/clients}">
+                          <suggestionItems>
+                            <core:Item key="{app>key}" text="{app>text}"/>
+                          </suggestionItems>
+                        </Input>
+                        <Input value="{app>produto}" editable="{app>editable}" width="11rem" showSuggestion="true" suggestionItems="{app>/valueHelps/products}">
+                          <suggestionItems>
+                            <core:Item key="{app>key}" text="{app>text}"/>
+                          </suggestionItems>
+                        </Input>
+                        <HBox alignItems="Center" justifyContent="Center" width="100%" visible="{= !${app>isBudgetForecast} }">
+                          <ObjectStatus text="{app>mtsMto}" state="Error" inverted="true" visible="{= ${app>mtsMto} === 'MTO' }"/>
+                          <ObjectStatus text="{app>mtsMto}" state="Information" inverted="true" visible="{= ${app>mtsMto} === 'MTS' }"/>
+                        </HBox>
+                        <ObjectStatus text="{app>situacao}" state="{app>situacaoState}" visible="{= !${app>isBudgetForecast} }"/>
+                        <ObjectStatus text="{app>technicalStatusText}" state="{app>technicalStatusState}" icon="{app>technicalStatusIcon}" visible="{= !${app>isBudgetForecast} }"/>
+                        <Input value="{app>qtd}" type="Number" textAlign="End" width="6rem" editable="{app>qtdEditable}" liveChange=".onForecastFieldChange"/>
+                        <HBox alignItems="Center" justifyContent="End" width="100%">
+                          <Input value="{app>valorUnit}" type="Number" textAlign="End" width="7rem" editable="{app>valorUnitEditable}" liveChange=".onForecastFieldChange" visible="{app>valorUnitEditable}"/>
+                          <ObjectNumber number="{app>valorUnitDisplay}" unit="R$" visible="{= !${app>valorUnitEditable} }"/>
+                        </HBox>
+                        <ObjectNumber number="{app>valorTotalDisplay}" unit="R$"/>
+                        <ObjectNumber number="{app>freteDisplay}" unit="R$"/>
+                        <Input value="{app>prob}" type="Number" textAlign="End" width="5rem" editable="{app>editable}" liveChange=".onForecastFieldChange"/>
+                        <ObjectNumber number="{app>valorPondDisplay}" unit="R$"/>
+                        <DatePicker value="{app>data}" valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" editable="{app>dataEditable}" change=".onForecastFieldChange"/>
+                        <Text text="{app>mes}"/>
+                        <ObjectStatus text="{app>status}" state="{app>statusState}"/>
+                      </cells>
+                    </ColumnListItem>
+                  </items>
+                </Table>
+              </smartTable:SmartTable>
+            </IconTabFilter>
+
+<IconTabFilter text="{i18n>budget}" key="budget">
+              <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button text="{i18n>addBudgetToForecast}" icon="sap-icon://add" type="Emphasized" press=".onAddBudgetSelection"/>
+              </OverflowToolbar>
+              <ScrollContainer height="30rem" width="100%" vertical="true" horizontal="true" focusable="true" class="tabTableScroll">
+                <smartTable:SmartTable id="budgetSmartTable" tableType="ResponsiveTable" enableAutoBinding="false" useVariantManagement="false" useTablePersonalisation="true" showRowCount="true" width="100%">
+                  <Table
+                    id="budgetTable"
+                    mode="MultiSelect"
+                    selectionChange=".onSourceSelectionChange"
+                    sticky="ColumnHeaders"
+                    fixedLayout="false"
+                    width="100%"
+                    items="{app>/budgetObjectRows}"
+                    class="zebraTable">
+                    <columns>
+                      <Column width="13rem"><Text text="{i18n>budgetName}"/></Column>
+                      <Column width="7rem"><Text text="{i18n>plant}"/></Column>
+                      <Column width="8.5rem"><Text text="{i18n>salesTeam}"/></Column>
+                      <Column width="11rem"><Text text="{i18n>client}"/></Column>
+                      <Column width="5rem"><Text text="{i18n>month}"/></Column>
+                      <Column width="4.5rem"><Text text="{i18n>year}"/></Column>
+                      <Column width="10rem"><Text text="{i18n>description}"/></Column>
+                      <Column hAlign="End" width="7rem"><Text text="{i18n>total}"/></Column>
+                    </columns>
+                    <items>
+                      <ColumnListItem>
+                        <cells>
+                          <Text text="{app>concatName}"/>
+                          <Text text="{app>centroText}"/>
+                          <Text text="{app>eqvsText}"/>
+                          <Text text="{app>cliente}"/>
+                          <Text text="{app>monthLabel}"/>
+                          <Text text="{app>yearDisplay}"/>
+                          <Text text="{app>desc}"/>
+                          <ObjectNumber number="{app>totalDisplay}" unit="{app>totalUnit}"/>
+                        </cells>
+                      </ColumnListItem>
+                    </items>
+                  </Table>
+                </smartTable:SmartTable>
+              </ScrollContainer>
+            </IconTabFilter>
+          </items>
+        </IconTabBar>
+      </VBox>
+    </f:content>
+  </f:DynamicPage>
+  </VBox>
+</mvc:View>
