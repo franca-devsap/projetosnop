@@ -1,0 +1,356 @@
+html,
+body,
+#content,
+#container,
+#container-uiarea,
+.sapUiBody,
+.sapUiComponentContainer,
+.sapUiComponentContainer > div,
+.sapUShellApplicationContainer,
+.sapUShellApplicationContainerLimitedWidth,
+.sapUShellApplicationContainer .sapUShellApplicationContainerLimitedWidth,
+.sapUShellApplicationContainer .sapUShellApplicationContainerContent,
+.sapUShellApplicationContainerContent {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#content {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.sapUShellApplicationContainerLimitedWidth {
+  left: 0 !important;
+  right: 0 !important;
+  max-width: none !important;
+}
+
+.forecastPage {
+  background: #f5f6f7;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.fullWidthPage,
+.fullWidthHeader,
+.fullWidthPage .sapFDynamicPage,
+.fullWidthPage .sapFDynamicPageContent,
+.fullWidthPage .sapFDynamicPageContentWrapper,
+.fullWidthPage .sapFDynamicPageContentFitContainer,
+.fullWidthPage .sapFDynamicPageContentFitContainer > div,
+.fullWidthPage .sapFDynamicPageHeader {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.fullWidthPage .sapFDynamicPageContent,
+.fullWidthPage .sapFDynamicPageContentFitContainer,
+.fullWidthPage .sapFDynamicPageContentWrapper {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+.fullWidthPage .sapFDynamicPageContent {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.contentWrap {
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow-y: visible;
+  overflow-x: hidden;
+  padding-bottom: 5rem;
+}
+
+.pageScroll {
+  max-height: none;
+  min-height: 0;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+.kpiStrip {
+  align-items: stretch;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.kpiBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 15rem;
+  min-height: 6.75rem;
+  flex: 1 1 15rem;
+  padding: 1rem 1rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.kpiBox > .sapMObjectNumber {
+  margin-top: 1.25rem !important;
+}
+
+.kpiBox .sapMText {
+  color: #55606b;
+  font-size: 1rem;
+  padding-bottom: 0.4rem;
+}
+
+.kpiBox .sapMObjectNumberText,
+.kpiBox .sapMObjectNumberUnit {
+  font-family: "72", "72full", Arial, Helvetica, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.kpiSwitchWrap {
+  gap: 0.35rem;
+}
+
+.kpiSwitchLabel .sapMLabelTextWrapper,
+.kpiSwitchLabel {
+  font-size: 0.75rem;
+  color: #55606b;
+}
+
+.kpiValuePair {
+  gap: 1.875rem;
+  margin-top: 1.25rem !important;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-start !important;
+}
+
+.kpiGrossWeightBox {
+  align-items: flex-start;
+  min-width: 5.5rem;
+}
+
+.kpiGrossWeightLabel.sapMText {
+  padding-bottom: 0.15rem;
+  font-size: 0.75rem;
+}
+
+.kpiGrossWeightBox .sapMObjectNumber {
+  white-space: nowrap;
+}
+
+.accentGap {
+  border-color: #b9c7d8;
+}
+
+.chartPanel,
+.workspacePanel {
+  border-radius: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.forecastTable {
+  min-width: 118rem;
+}
+
+.forecastEditTable {
+  min-width: 126rem;
+}
+
+.workspaceTabs {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-x: hidden;
+}
+
+.workspaceTabs .sapMITBContainerContent {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.workspaceTabs .sapMITBContent {
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 3rem;
+}
+
+.workspaceTabs .sapMITBContainerContent,
+.workspaceTabs .sapMITBContentClosed,
+.workspaceTabs .sapMITH {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.monthDetailTable {
+  min-width: 92rem;
+}
+
+.monthDetailTable .sapMText,
+.monthDetailTable .sapMObjectNumber,
+.monthDetailTable .sapMObjectNumberText,
+.monthDetailTable .sapMObjectNumberUnit,
+.monthDetailTable .sapMObjectStatus,
+.monthDetailTable .sapMObjStatusText {
+  color: #000 !important;
+}
+
+.workspaceTabs .sapMListTbl {
+  width: 100%;
+}
+
+.workspaceTabs .sapMListTblCnt {
+  max-width: none;
+  overflow-x: visible;
+}
+
+.tabTableScroll {
+  max-height: calc(100vh - 20rem);
+  min-height: 18rem;
+  border-top: 1px solid #d9e2ec;
+}
+
+.tabTableScroll .sapMScrollContScroll {
+  min-width: 100%;
+}
+
+.workspaceTabs .sapMTableTH,
+.workspaceTabs .sapMListTblCell {
+  box-sizing: border-box;
+}
+
+.forecastEditTable .sapMInputBase,
+.forecastEditTable .sapMInputBaseContentWrapper,
+.forecastEditTable .sapMInputBaseInner {
+  max-width: 100%;
+}
+
+.zebraTable .sapMListTblRow:nth-child(even) {
+  background: #f7f7f7;
+}
+
+.zebraTable .sapMListTblRow:nth-child(even) .sapMListTblCell {
+  background: #f7f7f7;
+}
+
+.forecastTable .sapMListTblCell {
+  vertical-align: middle;
+}
+
+.sapMPanelContent {
+  padding: 0.75rem;
+}
+
+.chartHorizontalScroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.chartScrollLayout {
+  width: 100%;
+}
+
+.chartFixedLegend {
+  flex: 0 0 10rem;
+  padding: 1rem 0.5rem 0 0.75rem;
+  border-left: 1px solid #d9dfe5;
+}
+
+.chartLegendItem {
+  gap: 0.5rem;
+  min-height: 1.5rem;
+  font-size: 0.75rem;
+}
+
+.chartLegendSwatch.sapMText {
+  display: inline-block;
+  width: 0.75rem;
+  min-width: 0.75rem;
+  height: 0.75rem;
+  line-height: 0.75rem;
+  border-radius: 0.0625rem;
+}
+
+.chartLegendCarteira {
+  background: #2f80ed;
+}
+
+.chartLegendCotacoes {
+  background: #2fa17a;
+}
+
+.chartLegendFaturado {
+  background: #8b5aa5;
+}
+
+.chartLegendBudget {
+  background: #d85a2e;
+}
+
+.chartLegendPrevisao {
+  background: #f3c12f;
+}
+
+.forecastChartText,
+.forecastChartText svg {
+  overflow: visible;
+}
+
+.revenueSummaryTable {
+  min-width: 96rem;
+}
+
+.revenueSummaryTable .sapMListTblHeaderCell:not(:first-child),
+.revenueSummaryTable .sapMListTblCell:not(:first-child) {
+  text-align: right;
+}
+
+.revenueSummaryTable .sapMListTblHeaderCell:not(:first-child) .sapMText,
+.revenueSummaryTable .sapMListTblCell:not(:first-child) .sapMText {
+  display: block;
+  text-align: right;
+}
+
+.revenueSummaryTable .sapMListTblHeaderCell .sapMText,
+.revenueSummaryTable .sapMListTblCell .sapMText {
+  color: #000;
+}
+
+.revenueSummaryTable .sapMObjectNumberText,
+.revenueSummaryTable .sapMObjectNumberUnit {
+  color: #000;
+  font-weight: 400 !important;
+}
+
+.revenueSummaryTotalRow .sapMListTblCell {
+  background: #5b6670 !important;
+}
+
+.revenueSummaryTotalRow .sapMText {
+  color: #fff !important;
+  font-weight: 700;
+}
+
+.revenueSummaryTotalRow .sapMObjectNumberText,
+.revenueSummaryTotalRow .sapMObjectNumberUnit {
+  color: #fff !important;
+  font-weight: 700 !important;
+}

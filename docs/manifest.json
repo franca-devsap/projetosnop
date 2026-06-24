@@ -1,0 +1,73 @@
+{
+	"_version": "1.60.0",
+	"sap.app": {
+		"id": "zsd.forecast.unrestricted",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				""
+			]
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "0.1.0"
+		},
+		"sourceTemplate": {
+			"id": "@sap/ux-app-migrator:freestyle",
+			"version": "1.24.0",
+			"toolsId": "caf323c0-7171-451b-b839-cc045cc10c6a"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"fullWidth": true,
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "zsd.forecast.unrestricted.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "zsd.forecast.unrestricted.i18n.i18n",
+					"supportedLocales": [
+						""
+					]
+				}
+			}
+		},
+		"dependencies": {
+			"minUI5Version": "1.120.0",
+			"libs": {
+				"sap.m": {},
+				"sap.f": {},
+				"sap.ui.comp": {},
+				"sap.ui.table": {},
+				"sap.viz": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"flexBundle": false
+	}
+}
